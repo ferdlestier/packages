@@ -16,8 +16,4 @@
     "url": "https://github.com/ferdlestier/packages/issues"
   },
   "homepage": "https://github.com/ferdlestier/packages#readme"
-},
-{
-  "publishConfig": {
-     "@ferdlestier:registry": "https://npm.pkg.github.com"
- }
+}
