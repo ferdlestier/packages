@@ -1,6 +1,6 @@
 {
   "name": "@ferdlestier/packages",
-  "version": "3.0.1",
+  "version": "4.0.1",
   "description": "packages npm onboard",
   "main": "index.js",
   "scripts": {
