@@ -1,5 +1,5 @@
 {
-  "name": "@ferdlestier/packages",
+  "name": "ferdlestier/packages",
   "version": "1.0.1",
   "description": "packages npm onboard",
   "main": "index.js",
