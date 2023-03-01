@@ -1,0 +1,37 @@
+name: Bay SFCC Dev Deployment
+
+# Controls when the workflow will run
+# on:
+#   workflow_dispatch:
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+jobs:
+  CHECK-FOR-NEW-COMMITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      commits: ${{ steps.check-new-commits.outputs.new_commits }}
+      
+    steps:
+      - name: Checkout SFCC repository
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.REPO }}
+          ref: ${{ env.BRANCH }}
+          #fetch-depth: '0'
+          token: ${{ secrets.PACKAGE_TOKEN }}
+          
+      - name: Check for new commits in last 15 mins
+        id: check-new-commits
+        run: |
+          git log --since="15 minutes ago" --pretty=format:'"%s","%an","%ar","%h"'
+          echo "print no-merges"
+          git log --no-merges --since="15 minutes ago" --pretty=format:'"%s","%an","%ar","%h"'
+          output=$(git log --since="15 minutes ago" --pretty=format:'"%s","%an","%ar","%h"')
+          if [[ -n $output ]]
+          then
+            echo "new_commits=true" >> $GITHUB_OUTPUT
+          else
+            echo "new_commits=false" >> $GITHUB_OUTPUT
+          fi
