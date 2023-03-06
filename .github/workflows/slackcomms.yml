@@ -12,7 +12,7 @@ jobs:
 # Sends slack a notification that the job is starting
     steps:
       - name: Job start slack notification
-        uses: act10ns/slack@v1
+        uses: act10ns/slack@v2
         with:
           status: 'START'
         env:
@@ -31,7 +31,7 @@ jobs:
 # sends slack a notification that the job is completed successfully  
       
       - name: Job finish slack notification
-        uses: act10ns/slack@v1
+        uses: act10ns/slack@v2
         with:
           status: ${{ job.status }}
         env:
