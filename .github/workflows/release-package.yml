@@ -5,14 +5,14 @@ on:
     types: [created]
 
 # Sends slack a notification that the job is starting
-    steps:
-      - name: Job start slack notification
-        uses: act10ns/slack@v2.0.0
-        with:
-          status: 'START'
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
-        if: always()
+#    steps:
+#      - name: Job start slack notification
+#        uses: act10ns/slack@v2.0.0
+#        with:
+#          status: 'START'
+#        env:
+#          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+#        if: always()
        
 jobs:
   build:
@@ -24,6 +24,8 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
+      - run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Testando mensagem"}' https://hooks.slack.com/services/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
 
   publish-gpr:
     needs: build
@@ -44,10 +46,10 @@ jobs:
 
 # sends slack a notification that the job is completed successfully  
       
-      - name: Job finish slack notification
-        uses: act10ns/slack@v2.0.0
-        with:
-          status: ${{ job.status }}
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
-        if: always()
+#      - name: Job finish slack notification
+#        uses: act10ns/slack@v2.0.0
+#        with:
+#          status: ${{ job.status }}
+#        env:
+#          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+#        if: always()
