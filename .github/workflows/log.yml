@@ -27,5 +27,5 @@ jobs:
         run: |
           apt-get update
           apt-get upgrade -y
-          apt-get install git
+          apt-get install git -y
           git log --since="15.minutes" --pretty=format:'"%s","%an","%ar","%h"'
