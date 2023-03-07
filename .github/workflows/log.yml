@@ -1,11 +1,11 @@
 name: Test Git Log
 
-# Controls when the workflow will run
+ Controls when the workflow will run
 # on:
 #   workflow_dispatch:
-#on:
-#  schedule:
-#    - cron: "*/15 * * * *"
+on:
+  schedule:
+    - cron: "*/15 * * * *"
 jobs:
   CHECK-FOR-NEW-COMMITS:
     runs-on: ubuntu-latest
@@ -25,4 +25,7 @@ jobs:
       - name: Check for new commits in last 15 mins
         id: check-new-commits
         run: |
+          apt-get update
+          apt-get upgrade -y
+          apt-get install git
           git log --since="15.minutes" --pretty=format:'"%s","%an","%ar","%h"'
