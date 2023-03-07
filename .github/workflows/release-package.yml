@@ -48,6 +48,7 @@ jobs:
         uses: act10ns/slack@v2.0.0
         with:
           status: ${{ job.status }}
+          channel: '#slack-integration'
         env:
           SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
         if: always()
