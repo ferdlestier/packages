@@ -11,7 +11,7 @@ on:
         with:
           status: 'START'
         env:
-          SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
         if: always()
        
 jobs:
@@ -48,7 +48,6 @@ jobs:
         uses: act10ns/slack@v2.0.0
         with:
           status: ${{ job.status }}
-          channel: '#slack-integration'
         env:
-          SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
         if: always()
