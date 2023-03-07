@@ -4,6 +4,16 @@ on:
   release:
     types: [created]
 
+# Sends slack a notification that the job is starting
+    steps:
+      - name: Job start slack notification
+        uses: act10ns/slack@v2.0.0
+        with:
+          status: 'START'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+       
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,3 +41,13 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PACKAGE_TOKEN}}
+
+# sends slack a notification that the job is completed successfully  
+      
+      - name: Job finish slack notification
+        uses: act10ns/slack@v2.0.0
+        with:
+          status: ${{ job.status }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
