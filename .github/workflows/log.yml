@@ -3,9 +3,9 @@ name: Test Git Log
  Controls when the workflow will run
 # on:
 #   workflow_dispatch:
-on:
-  schedule:
-    - cron: "*/15 * * * *"
+#on:
+#  schedule:
+#    - cron: "*/15 * * * *"
 jobs:
   CHECK-FOR-NEW-COMMITS:
     runs-on: ubuntu-latest
