@@ -25,7 +25,7 @@ jobs:
       - name: Check for new commits in last 15 mins
         id: check-new-commits
         run: |
-          apt-get update
-          apt-get upgrade -y
-          apt-get install git -y
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get install git -y
           git log --since="15.minutes" --pretty=format:'"%s","%an","%ar","%h"'
