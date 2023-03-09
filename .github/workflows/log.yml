@@ -34,3 +34,8 @@ jobs:
         run: |
           git log --since="15.minutes" --pretty=format:'"%s","%an","%ar","%h"'
           git log --oneline --reverse refs/heads/main | awk 'NR % 1 == 0'
+      - name: Check for last commits
+        id: gitlog1
+        run: |
+          git log --since="15.minutes" --pretty=format:'"%s","%an","%ar","%h"'
+          git log --oneline --reverse refs/heads/main | awk 'NR % 1 == 0'
