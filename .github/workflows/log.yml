@@ -28,7 +28,5 @@ jobs:
           sudo apt-get update
           sudo apt-get upgrade -y
           sudo apt-get install git -y
-          echo("Finished!")
           git log --since="15.minutes" --pretty=format:'"%s","%an","%ar","%h"'
           git log --oneline --reverse refs/heads/main | awk 'NR % 1 == 0'
-          echo("Logged!")
