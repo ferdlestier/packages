@@ -1,0 +1,16 @@
+name: Environment Name
+
+on:
+   workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      env_name: stage
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Print environment variable
+        run: echo "Environment name is $env_name"
