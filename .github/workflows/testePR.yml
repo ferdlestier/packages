@@ -8,7 +8,7 @@ on:
     types:
       - opened
     branches: 
-      - 'pre-dev'
+      - 'ferdlestier-patch-1'
   #workflow_dispatch:
 
 jobs:
