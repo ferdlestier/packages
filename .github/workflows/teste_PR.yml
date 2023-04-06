@@ -1,0 +1,33 @@
+name: Bay SFCC Dev Linter
+
+## Controls when the workflow will run
+# on:
+#   workflow_dispatch:
+on:
+  pull_request:
+    types:
+      - opened
+    branches: 
+      - 'pre-dev'
+  #workflow_dispatch:
+
+jobs:
+  SFCC-DEV-LINT:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout SFCC repository
+        uses: actions/checkout@v3
+        with:
+          #repository: 'thebaytech/sfcc.git'
+          #ref: 'pre-dev'
+          token: ${{ secrets.PACKAGE_TOKEN }}
+          
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_JAVASCRIPT_ES: true
+          #DEFAULT_BRANCH: 'pre-dev'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
