@@ -1,7 +1,10 @@
 name: Test Timeout Issue
 
 on:
+  schedule:
+    - cron: '*/15 * * * *'  
   workflow_dispatch:
+  
 
 jobs:
   build_short_sha:
