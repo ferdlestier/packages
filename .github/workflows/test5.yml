@@ -1,0 +1,28 @@
+name: Test Timeout Issue
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_short_sha:
+    name: Build Short Sha
+    runs-on: ubuntu-latest
+    outputs:
+      short_sha: ${{ steps.echo-sha.outputs.short_sha }}
+    steps:
+    # Need to take substring of GITHUB_SHA because otherwise the cloud run url will be partly cut off
+    - id: echo-sha
+      run: echo "short_sha=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Release
+        run: |
+          ID=$(curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" "https://api.github.com/repos/ferdlestier/packages/releases/94776361" | jq .id)
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer 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"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/ferdlestier/packages/releases/$ID  
