@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 16
 
-      - run: npm clean-install
+      - run: npm ci
+      - run: npm test
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
