@@ -1,7 +1,7 @@
 name: Test Install NPM
 
 
-on:
+ona:
   workflow_dispatch:
        
 jobs:
